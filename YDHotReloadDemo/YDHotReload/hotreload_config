@@ -1,0 +1,11 @@
+{
+    "required": {
+        "project_path":"/Users/xuyadong/practices/Swift/YDHotReload/YDHotReloadDemo",
+        "hotreload_root_path":"/usr/local/ydhotreload",
+        "hotreload_filenames":["ViewController.swift","TestLabel.swift","NewTestLabel"],
+        "dylib_name":"test"
+    },
+    "optional":{
+        "hotreload_filenames_check_dir":["YDMemoryLeakFinder"]
+    }
+}
