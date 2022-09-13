@@ -37,7 +37,7 @@ sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}
 @property (strong,nonatomic)dispatch_source_t sourceConfig;
 @property (strong,nonatomic)dispatch_source_t sourceLibrary;
 
-@property (strong,nonatomic)NSString *project_path;
+
 @property (strong,nonatomic)NSString *hotreload_root_path;
 @property (strong,nonatomic)NSArray<NSString *> *hotreload_filenames;
 @property (strong,nonatomic)NSArray<NSString *> *hotreload_filenames_check_dir;//用来快速查看文件是否存在的相对地址
