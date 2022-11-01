@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA3F56A228D021F600EF320B /* YDFileMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA3F56A028D021F600EF320B /* YDFileMonitor.mm */; };
-		AA3F56A328D021F600EF320B /* YDFileMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = AA3F56A128D021F600EF320B /* YDFileMonitor.h */; };
-		AA3F56A928D04A9900EF320B /* TestLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F56A828D04A9900EF320B /* TestLabel.swift */; };
+		AA0593F928FAFED000B6B661 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0593F828FAFED000B6B661 /* TestViewController.swift */; };
+		AA86EE6228D9C9D300CD0261 /* YDConfig.sh in Resources */ = {isa = PBXBuildFile; fileRef = AA86EE6128D9C9D200CD0261 /* YDConfig.sh */; };
+		AA86EE6328D9C9D300CD0261 /* YDConfig.sh in Resources */ = {isa = PBXBuildFile; fileRef = AA86EE6128D9C9D200CD0261 /* YDConfig.sh */; };
 		AA9374FD27B2427C00982B2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9374FC27B2427C00982B2B /* AppDelegate.swift */; };
 		AA93750127B2427C00982B2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA93750027B2427C00982B2B /* ViewController.swift */; };
 		AA93750427B2427C00982B2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA93750227B2427C00982B2B /* Main.storyboard */; };
@@ -22,7 +22,6 @@
 		AA93752627B2449500982B2B /* YDHotReload.m in Sources */ = {isa = PBXBuildFile; fileRef = AA93752427B2449500982B2B /* YDHotReload.m */; };
 		AA93752927B2459300982B2B /* hotreload_config in Resources */ = {isa = PBXBuildFile; fileRef = AA93752327B2449500982B2B /* hotreload_config */; };
 		AA93752A27B2468E00982B2B /* YDHotReload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93751527B2439600982B2B /* YDHotReload.framework */; };
-		AAC05B1028C64BCE00000149 /* NewTestLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC05B0F28C64BCE00000149 /* NewTestLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,10 +49,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA3F56A028D021F600EF320B /* YDFileMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = YDFileMonitor.mm; sourceTree = "<group>"; };
-		AA3F56A128D021F600EF320B /* YDFileMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDFileMonitor.h; sourceTree = "<group>"; };
+		AA0593F828FAFED000B6B661 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		AA3F56A428D0225300EF320B /* YDHotReloadDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YDHotReloadDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		AA3F56A828D04A9900EF320B /* TestLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLabel.swift; sourceTree = "<group>"; };
+		AA86EE6128D9C9D200CD0261 /* YDConfig.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = YDConfig.sh; sourceTree = "<group>"; };
 		AA9374F927B2427C00982B2B /* YDHotReloadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YDHotReloadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9374FC27B2427C00982B2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA93750027B2427C00982B2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 		AA93751827B2439600982B2B /* YDHotReload.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = YDHotReload.docc; sourceTree = "<group>"; };
 		AA93752327B2449500982B2B /* hotreload_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hotreload_config; sourceTree = "<group>"; };
 		AA93752427B2449500982B2B /* YDHotReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDHotReload.m; sourceTree = "<group>"; };
-		AAC05B0F28C64BCE00000149 /* NewTestLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +109,7 @@
 			children = (
 				AA9374FC27B2427C00982B2B /* AppDelegate.swift */,
 				AA93750027B2427C00982B2B /* ViewController.swift */,
-				AA3F56A828D04A9900EF320B /* TestLabel.swift */,
-				AAC05B0F28C64BCE00000149 /* NewTestLabel.swift */,
+				AA0593F828FAFED000B6B661 /* TestViewController.swift */,
 				AA93750227B2427C00982B2B /* Main.storyboard */,
 				AA93750527B2427E00982B2B /* Assets.xcassets */,
 				AA93750727B2427E00982B2B /* LaunchScreen.storyboard */,
@@ -126,9 +122,8 @@
 		AA93751627B2439600982B2B /* YDHotReload */ = {
 			isa = PBXGroup;
 			children = (
+				AA86EE6128D9C9D200CD0261 /* YDConfig.sh */,
 				AA93752327B2449500982B2B /* hotreload_config */,
-				AA3F56A128D021F600EF320B /* YDFileMonitor.h */,
-				AA3F56A028D021F600EF320B /* YDFileMonitor.mm */,
 				AA93751727B2439600982B2B /* YDHotReload.h */,
 				AA93752427B2449500982B2B /* YDHotReload.m */,
 				AA93751827B2439600982B2B /* YDHotReload.docc */,
@@ -150,7 +145,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA3F56A328D021F600EF320B /* YDFileMonitor.h in Headers */,
 				AA93751A27B2439600982B2B /* YDHotReload.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,6 +160,7 @@
 				AA9374F627B2427C00982B2B /* Frameworks */,
 				AA9374F727B2427C00982B2B /* Resources */,
 				AA93752227B2439600982B2B /* Embed Frameworks */,
+				AA86EE6028D9C90B00CD0261 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -238,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA86EE6228D9C9D300CD0261 /* YDConfig.sh in Resources */,
 				AA93752927B2459300982B2B /* hotreload_config in Resources */,
 				AA93750927B2427E00982B2B /* LaunchScreen.storyboard in Resources */,
 				AA93750627B2427E00982B2B /* Assets.xcassets in Resources */,
@@ -250,20 +246,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA93752527B2449500982B2B /* hotreload_config in Resources */,
+				AA86EE6328D9C9D300CD0261 /* YDConfig.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA86EE6028D9C90B00CD0261 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#config_shell_path=$(find ${PROJECT_DIR} -name \"YDConfig.sh\")\n#source $config_shell_path\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA9374F527B2427C00982B2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0593F928FAFED000B6B661 /* TestViewController.swift in Sources */,
 				AA93750127B2427C00982B2B /* ViewController.swift in Sources */,
 				AA9374FD27B2427C00982B2B /* AppDelegate.swift in Sources */,
-				AA3F56A928D04A9900EF320B /* TestLabel.swift in Sources */,
-				AAC05B1028C64BCE00000149 /* NewTestLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +289,6 @@
 			files = (
 				AA93751927B2439600982B2B /* YDHotReload.docc in Sources */,
 				AA93752627B2449500982B2B /* YDHotReload.m in Sources */,
-				AA3F56A228D021F600EF320B /* YDFileMonitor.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

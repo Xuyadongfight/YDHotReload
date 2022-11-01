@@ -33,6 +33,16 @@ fi\n\
 newcount=$(($injectcount+1))\n\
 sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}/\" $zshconfigfile_path";
 
+#define HOTSUCCESS \
+@\
+"\n\
+**********************************************\
+\n\
+*-------------hot reload success-------------*\
+\n\
+**********************************************\
+\n"
+
 @interface YDHotReload ()
 @property (strong,nonatomic)dispatch_source_t sourceConfig;
 @property (strong,nonatomic)dispatch_source_t sourceLibrary;
@@ -71,7 +81,6 @@ sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}
     [shared createShells];//创建shells
     [@"" writeToFile:[NSString stringWithFormat:@"%@/%@",shared.pathOfOthers,YD_CONFIG_NAME] atomically:YES encoding:NSUTF8StringEncoding error:nil];
     [shared startFileWatch];
-    [shared debug_log];
 }
 
 
@@ -280,7 +289,6 @@ sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}
         void *lib = dlopen([libName UTF8String],RTLD_NOW);
         NSString * result= [NSString stringWithFormat:@"load lib %@",libName];
         if (lib != NULL){
-            YD_SUCCESS(result);
             [self changeClasses];
         }else{
             YD_ERROR(result);
@@ -322,18 +330,16 @@ sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}
     }
     if ([originalCls isKindOfClass:object_getClass([UIViewController class])] && [newCls isKindOfClass:object_getClass([UIViewController class])]) {
         UIViewController *current = [self findVisibleViewController];
-        if ([current class] == newCls) {
+        NSArray* currentNames = [[NSString stringWithUTF8String:object_getClassName(current)] componentsSeparatedByString:@"."];
+        NSArray* newClsNames = [[NSString stringWithUTF8String:class_getName(newCls)] componentsSeparatedByString:@"."];
+        if ([currentNames.lastObject isEqualToString:newClsNames.lastObject]) {
+            object_setClass(current, newCls);
+            current.view = [UIView new];
+            [current viewDidLoad];
+            NSLog(HOTSUCCESS);
             return;
         }
-            object_setClass(current, newCls);
-        current.view = [UIView new];
-        [current viewDidLoad];
-    }else if ([originalCls isKindOfClass:object_getClass([UIView class])]){
-        object_setClass(originalCls, object_getClass(newCls));
-    }else{
-//        object_setClass(originalCls, object_getClass(newCls));
     }
-    
 }
 
 -(NSDictionary*)getOriginalClassNames{
@@ -427,10 +433,6 @@ sed -i \"\" \"s/export injectcount=${injectcount}/export injectcount=${newcount}
         }
     }
     return currentViewController;
-}
-
--(void)debug_log{
-    NSLog(@"1",@"2");
 }
 
 @end

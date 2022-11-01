@@ -2,7 +2,7 @@
     "required": {
         "project_path":"/Users/xuyadong/practices/Swift/YDHotReload/YDHotReloadDemo",
         "hotreload_root_path":"/usr/local/ydhotreload",
-        "hotreload_filenames":["ViewController.swift"],
+        "hotreload_filenames":["ViewController.swift","TestViewController.swift"],
         "dylib_name":"test"
     },
     "optional":{
