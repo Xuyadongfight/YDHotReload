@@ -169,6 +169,8 @@ int ReadDir(const char* pathname,void *array,void*dic){
     DIR *dir;
     char strchdpath[256];
     if ((dir = opendir(pathname))==0) {
+        fprintf(stderr, "Error failed to open input directory -%s\n",strerror(errno));
+        NSLog(@"ERROR:%s 打开失败",pathname);
         return -1;
     }
     struct dirent *stdinfo;
