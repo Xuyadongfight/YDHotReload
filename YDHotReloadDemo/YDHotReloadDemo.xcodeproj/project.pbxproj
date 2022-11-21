@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AA0593F928FAFED000B6B661 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0593F828FAFED000B6B661 /* TestViewController.swift */; };
-		AA86EE6228D9C9D300CD0261 /* YDConfig.sh in Resources */ = {isa = PBXBuildFile; fileRef = AA86EE6128D9C9D200CD0261 /* YDConfig.sh */; };
-		AA86EE6328D9C9D300CD0261 /* YDConfig.sh in Resources */ = {isa = PBXBuildFile; fileRef = AA86EE6128D9C9D200CD0261 /* YDConfig.sh */; };
+		AA2C717A2924C62A00468638 /* YDFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AA2C71782924C62A00468638 /* YDFileManager.h */; };
+		AA2C717B2924C62A00468638 /* YDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C71792924C62A00468638 /* YDFileManager.m */; };
+		AA2C717D29260D7E00468638 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C717C29260D7E00468638 /* Test.swift */; };
+		AA2C7187292728EE00468638 /* file_name_project in Resources */ = {isa = PBXBuildFile; fileRef = AA2C7180292728CE00468638 /* file_name_project */; };
+		AA2C71892927331F00468638 /* file_name_config in Resources */ = {isa = PBXBuildFile; fileRef = AA2C71882927331F00468638 /* file_name_config */; };
+		AA2C718A2927331F00468638 /* file_name_config in Resources */ = {isa = PBXBuildFile; fileRef = AA2C71882927331F00468638 /* file_name_config */; };
 		AA9374FD27B2427C00982B2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9374FC27B2427C00982B2B /* AppDelegate.swift */; };
 		AA93750127B2427C00982B2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA93750027B2427C00982B2B /* ViewController.swift */; };
 		AA93750427B2427C00982B2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA93750227B2427C00982B2B /* Main.storyboard */; };
@@ -18,9 +22,7 @@
 		AA93751927B2439600982B2B /* YDHotReload.docc in Sources */ = {isa = PBXBuildFile; fileRef = AA93751827B2439600982B2B /* YDHotReload.docc */; };
 		AA93751A27B2439600982B2B /* YDHotReload.h in Headers */ = {isa = PBXBuildFile; fileRef = AA93751727B2439600982B2B /* YDHotReload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA93751E27B2439600982B2B /* YDHotReload.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA93751527B2439600982B2B /* YDHotReload.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AA93752527B2449500982B2B /* hotreload_config in Resources */ = {isa = PBXBuildFile; fileRef = AA93752327B2449500982B2B /* hotreload_config */; };
 		AA93752627B2449500982B2B /* YDHotReload.m in Sources */ = {isa = PBXBuildFile; fileRef = AA93752427B2449500982B2B /* YDHotReload.m */; };
-		AA93752927B2459300982B2B /* hotreload_config in Resources */ = {isa = PBXBuildFile; fileRef = AA93752327B2449500982B2B /* hotreload_config */; };
 		AA93752A27B2468E00982B2B /* YDHotReload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA93751527B2439600982B2B /* YDHotReload.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +52,12 @@
 
 /* Begin PBXFileReference section */
 		AA0593F828FAFED000B6B661 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		AA2C71782924C62A00468638 /* YDFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDFileManager.h; sourceTree = "<group>"; };
+		AA2C71792924C62A00468638 /* YDFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDFileManager.m; sourceTree = "<group>"; };
+		AA2C717C29260D7E00468638 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		AA2C7180292728CE00468638 /* file_name_project */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file_name_project; sourceTree = "<group>"; };
+		AA2C71882927331F00468638 /* file_name_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file_name_config; sourceTree = "<group>"; };
 		AA3F56A428D0225300EF320B /* YDHotReloadDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YDHotReloadDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		AA86EE6128D9C9D200CD0261 /* YDConfig.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = YDConfig.sh; sourceTree = "<group>"; };
 		AA9374F927B2427C00982B2B /* YDHotReloadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YDHotReloadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9374FC27B2427C00982B2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA93750027B2427C00982B2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +68,6 @@
 		AA93751527B2439600982B2B /* YDHotReload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YDHotReload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA93751727B2439600982B2B /* YDHotReload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDHotReload.h; sourceTree = "<group>"; };
 		AA93751827B2439600982B2B /* YDHotReload.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = YDHotReload.docc; sourceTree = "<group>"; };
-		AA93752327B2449500982B2B /* hotreload_config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hotreload_config; sourceTree = "<group>"; };
 		AA93752427B2449500982B2B /* YDHotReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDHotReload.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +114,7 @@
 			children = (
 				AA9374FC27B2427C00982B2B /* AppDelegate.swift */,
 				AA93750027B2427C00982B2B /* ViewController.swift */,
+				AA2C717C29260D7E00468638 /* Test.swift */,
 				AA0593F828FAFED000B6B661 /* TestViewController.swift */,
 				AA93750227B2427C00982B2B /* Main.storyboard */,
 				AA93750527B2427E00982B2B /* Assets.xcassets */,
@@ -122,10 +128,12 @@
 		AA93751627B2439600982B2B /* YDHotReload */ = {
 			isa = PBXGroup;
 			children = (
-				AA86EE6128D9C9D200CD0261 /* YDConfig.sh */,
-				AA93752327B2449500982B2B /* hotreload_config */,
+				AA2C7180292728CE00468638 /* file_name_project */,
+				AA2C71882927331F00468638 /* file_name_config */,
 				AA93751727B2439600982B2B /* YDHotReload.h */,
 				AA93752427B2449500982B2B /* YDHotReload.m */,
+				AA2C71782924C62A00468638 /* YDFileManager.h */,
+				AA2C71792924C62A00468638 /* YDFileManager.m */,
 				AA93751827B2439600982B2B /* YDHotReload.docc */,
 			);
 			path = YDHotReload;
@@ -146,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA93751A27B2439600982B2B /* YDHotReload.h in Headers */,
+				AA2C717A2924C62A00468638 /* YDFileManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +169,6 @@
 				AA9374F627B2427C00982B2B /* Frameworks */,
 				AA9374F727B2427C00982B2B /* Resources */,
 				AA93752227B2439600982B2B /* Embed Frameworks */,
-				AA86EE6028D9C90B00CD0261 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -180,6 +188,7 @@
 				AA93751127B2439600982B2B /* Sources */,
 				AA93751227B2439600982B2B /* Frameworks */,
 				AA93751327B2439600982B2B /* Resources */,
+				AA2C71702924B1A000468638 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -233,8 +242,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA86EE6228D9C9D300CD0261 /* YDConfig.sh in Resources */,
-				AA93752927B2459300982B2B /* hotreload_config in Resources */,
+				AA2C71892927331F00468638 /* file_name_config in Resources */,
+				AA2C7187292728EE00468638 /* file_name_project in Resources */,
 				AA93750927B2427E00982B2B /* LaunchScreen.storyboard in Resources */,
 				AA93750627B2427E00982B2B /* Assets.xcassets in Resources */,
 				AA93750427B2427C00982B2B /* Main.storyboard in Resources */,
@@ -245,15 +254,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA93752527B2449500982B2B /* hotreload_config in Resources */,
-				AA86EE6328D9C9D300CD0261 /* YDConfig.sh in Resources */,
+				AA2C718A2927331F00468638 /* file_name_config in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AA86EE6028D9C90B00CD0261 /* ShellScript */ = {
+		AA2C71702924B1A000468638 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -268,7 +276,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#config_shell_path=$(find ${PROJECT_DIR} -name \"YDConfig.sh\")\n#source $config_shell_path\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile_name_project_path=$(pwd)\ncd ${file_name_project_path}/YDHotreload\necho ${file_name_project_path} > file_name_project\n\n<<COMMENT\nfile_name_dylib_base=\"test\"\ncd ~/Desktop\n#cd /usr/local\nfile_name_hotreload_path=\"$(pwd)/YDHotreload\"\nsource_class=\"${source_root_path}/class\"\nsource_shell=\"${source_root_path}/shell\"\nsource_library=\"${source_root_path}/library\"\nsource_other=\"${source_root_path}/other\"\n\n\nenv\necho \"----------\"\nmkdir YDHotreload\ncd YDHotreload\nmkdir class\nmkdir shell\nmkdir library\nmkdir other\n\n#echo ${file_name_project_path} > other/file_name_project_path\n#echo ${file_name_hotreload_path} > other/file_name_hotreload_path\n#echo ${file_name_dylib_base} > other/file_name_dylib_base\n\ncd ${file_name_project_path}/YDHotreload\necho ${file_name_hotreload_path} > file_name_hotreload\necho ${file_name_project_path} > file_name_project\necho ${file_name_dylib_base} > file_name_dylib_base\npwd\necho \"----------\"\nCOMMENT\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -278,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0593F928FAFED000B6B661 /* TestViewController.swift in Sources */,
+				AA2C717D29260D7E00468638 /* Test.swift in Sources */,
 				AA93750127B2427C00982B2B /* ViewController.swift in Sources */,
 				AA9374FD27B2427C00982B2B /* AppDelegate.swift in Sources */,
 			);
@@ -287,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA2C717B2924C62A00468638 /* YDFileManager.m in Sources */,
 				AA93751927B2439600982B2B /* YDHotReload.docc in Sources */,
 				AA93752627B2449500982B2B /* YDHotReload.m in Sources */,
 			);

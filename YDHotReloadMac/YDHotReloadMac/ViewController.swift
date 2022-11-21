@@ -20,7 +20,6 @@ class ViewController: NSViewController {
         NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged) { event in
             if event.modifierFlags.contains([.command]){
                 print("hot reload ")
-//                self.hotreload()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
                     self.runShell("/usr/local/bin/hot")
                 }
@@ -34,32 +33,6 @@ class ViewController: NSViewController {
         }
     }
 
-    func hotreload(){
-        let task = Process()
-        let path = "/usr/local/bin/hot"
-        
-        let fileManager = FileManager.default
-        let fileExist = fileManager.fileExists(atPath: path)
-        let readAble = fileManager.isReadableFile(atPath: path)
-        if fileExist {
-            print(path,"存在")
-        }
-        if readAble {
-            print("可读")
-        }
-        
-        let url : URL? = .init(fileURLWithPath: path)
-        
-        if let upUrl = url{
-            task.executableURL
-        }
-        do{
-            try task.run()
-        } catch let error{
-            print(error.localizedDescription)
-        }
-    }
-    
     func runShell(_ command: String) -> Int32 {
         let task = Process()
         task.launchPath = "/bin/zsh"
