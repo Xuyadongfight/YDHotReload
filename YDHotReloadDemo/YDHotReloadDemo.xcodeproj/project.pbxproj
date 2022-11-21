@@ -13,7 +13,6 @@
 		AA2C717D29260D7E00468638 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C717C29260D7E00468638 /* Test.swift */; };
 		AA2C7187292728EE00468638 /* file_name_project in Resources */ = {isa = PBXBuildFile; fileRef = AA2C7180292728CE00468638 /* file_name_project */; };
 		AA2C71892927331F00468638 /* file_name_config in Resources */ = {isa = PBXBuildFile; fileRef = AA2C71882927331F00468638 /* file_name_config */; };
-		AA2C718A2927331F00468638 /* file_name_config in Resources */ = {isa = PBXBuildFile; fileRef = AA2C71882927331F00468638 /* file_name_config */; };
 		AA9374FD27B2427C00982B2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9374FC27B2427C00982B2B /* AppDelegate.swift */; };
 		AA93750127B2427C00982B2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA93750027B2427C00982B2B /* ViewController.swift */; };
 		AA93750427B2427C00982B2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA93750227B2427C00982B2B /* Main.storyboard */; };
@@ -254,7 +253,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA2C718A2927331F00468638 /* file_name_config in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +274,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile_name_project_path=$(pwd)\ncd ${file_name_project_path}/YDHotreload\necho ${file_name_project_path} > file_name_project\n\n<<COMMENT\nfile_name_dylib_base=\"test\"\ncd ~/Desktop\n#cd /usr/local\nfile_name_hotreload_path=\"$(pwd)/YDHotreload\"\nsource_class=\"${source_root_path}/class\"\nsource_shell=\"${source_root_path}/shell\"\nsource_library=\"${source_root_path}/library\"\nsource_other=\"${source_root_path}/other\"\n\n\nenv\necho \"----------\"\nmkdir YDHotreload\ncd YDHotreload\nmkdir class\nmkdir shell\nmkdir library\nmkdir other\n\n#echo ${file_name_project_path} > other/file_name_project_path\n#echo ${file_name_hotreload_path} > other/file_name_hotreload_path\n#echo ${file_name_dylib_base} > other/file_name_dylib_base\n\ncd ${file_name_project_path}/YDHotreload\necho ${file_name_hotreload_path} > file_name_hotreload\necho ${file_name_project_path} > file_name_project\necho ${file_name_dylib_base} > file_name_dylib_base\npwd\necho \"----------\"\nCOMMENT\n\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile_name_project_path=$(pwd)\ncd ${file_name_project_path}/YDHotreload\necho ${file_name_project_path} > file_name_project\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
