@@ -31,6 +31,7 @@
 }
 + (void)load{
     YDHotReload *shared = [self shared];
+    NSLog(@"YDHotReload start");
     [shared setUp];
 }
 
