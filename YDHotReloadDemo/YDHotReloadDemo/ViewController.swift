@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        let title = [String].init(repeating: "bbb", count: 10).joined(separator: "------")
+        let title = [String].init(repeating: "aa", count: 10).joined(separator: "------")
         let tempSize = title.getSizeOfNumberLines(width: tempWidth, font: self.tempFont, numberline: self.numberLines)
         let label = UILabel()
         label.tag = 100

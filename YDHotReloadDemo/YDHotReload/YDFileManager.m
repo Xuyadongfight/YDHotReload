@@ -66,7 +66,7 @@
 -(void)checkFiles{
     NSString *project_path = [self loadBundleFile:FILE_NAME_PROJECT];
     if (project_path == nil || [project_path isEqual: @""]) {
-        NSLog(@"ERROR:工程路径%@ 无内容",project_path);
+        NSLog(@"ERROR:工程路径%@ 无内容 请重试",project_path);
         return;
     }
     self.path_project = project_path;

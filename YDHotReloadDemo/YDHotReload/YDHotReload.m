@@ -27,12 +27,14 @@
 
 @implementation YDHotReload
 + (void)start{
-    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        YDHotReload *shared = [self shared];
+        NSLog(@"YDHotReload start");
+        [shared setUp];
+//    });
 }
 + (void)load{
-    YDHotReload *shared = [self shared];
-    NSLog(@"YDHotReload start");
-    [shared setUp];
+
 }
 
 
