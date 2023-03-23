@@ -6,6 +6,202 @@
 //
 
 import UIKit
+
+enum ZFFilterShowType:String{
+    case eList = "行样式"
+    case eFlow = "瀑布流"
+}
+protocol ZFFilterProtocol{
+    func didSetData(data:ZFFilterModel)
+    func didSelect(isSelected:Bool)
+}
+
+
+class ZFFilterModel{
+    var showValue : String
+    
+    var filterKey : String
+    var filterValue : String
+    
+    var filterLayout : ZFFilterLayout?
+    var filterItems : [ZFFilterModel]?
+    
+    //自定义筛选
+    var filterCustom : [ZFFilterModel]?
+    
+    var isSelected : Bool
+    
+    init(key:String,value:String) {
+        self.filterKey = key
+        self.filterValue = value
+        self.showValue = self.filterValue
+        self.isSelected = false
+    }
+}
+
+class ZFFilterLayout{
+    var layoutStyle : ZFFilterShowType = .eList
+    
+    var layoutContainerFrame : CGRect = .zero
+    var layoutItemSize : CGSize = .zero
+    
+    init(containerFrame:CGRect,itemSize:CGSize,style:ZFFilterShowType = .eList){
+        self.layoutStyle = style
+        self.layoutContainerFrame = containerFrame
+        self.layoutItemSize = itemSize
+    }
+}
+
+
+
+class ZFFilterLabItemView : UIView{
+    
+    var filterModel : ZFFilterModel?
+    
+    fileprivate lazy var vTitle : UILabel = {
+        let temp = UILabel()
+        temp.font = UIFont.systemFont(ofSize: 14)
+        temp.textColor = .black
+        return temp
+    }()
+    
+    func setUp(){
+        if let upModel = self.filterModel {
+            self.didSetData(data: upModel)
+        }
+    }
+    
+    func didSetData(data: ZFFilterModel) {
+        self.filterModel = data
+        self.vTitle.text = data.showValue
+        
+        self.didSelect(isSelected: self.filterModel?.isSelected ?? false)
+    }
+    
+    func didSelect(isSelected: Bool) {
+        if isSelected {
+            self.vTitle.textColor = .red
+        }else{
+            self.vTitle.textColor = .black
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(self.vTitle)
+        self.vTitle.frame = self.bounds
+        self.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(actionOfSelect)))
+    }
+    
+    @objc func actionOfSelect(){
+        self.filterModel?.isSelected = !(self.filterModel?.isSelected ?? false)
+        self.didSelect(isSelected: self.filterModel?.isSelected ?? false)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+
+
+
+class ZFFilterBaseView : UIView{
+    
+    var allContainerView : UIView?
+    
+    var closureOfItem : ((ZFFilterBaseView,ZFFilterModel)->())?
+    
+    var filterModel : ZFFilterModel?
+
+    var subItems = [ZFFilterBaseView]()
+    
+   
+    
+    
+    fileprivate lazy var vTitle : UILabel = {
+        let temp = UILabel()
+        temp.textAlignment = .center
+        temp.font = UIFont.systemFont(ofSize: 14)
+        temp.textColor = .black
+        return temp
+    }()
+    fileprivate lazy var vTapGesture : UITapGestureRecognizer = {
+        let temp = UITapGestureRecognizer(target: self, action: #selector(actionOfTap))
+        return temp
+    }()
+    fileprivate lazy var vScroll : UIScrollView = {
+        let temp = UIScrollView()
+        temp.backgroundColor = .lightGray
+        temp.frame = self.filterModel?.filterLayout?.layoutContainerFrame ?? .zero
+        return temp
+    }()
+    
+    @objc func actionOfTap(){
+        self.filterModel?.isSelected = !(self.filterModel?.isSelected ?? false)
+        self.setSelected(isSelected: self.filterModel?.isSelected ?? false)
+    }
+    
+    func setSelected(isSelected:Bool){
+        if isSelected {
+            self.vTitle.textColor = .red
+            self.vScroll.isHidden = false
+        }else{
+            self.vTitle.textColor = .black
+            self.vScroll.isHidden = true
+        }
+    }
+    
+    func setUp(){
+        self.vTitle.text = self.filterModel?.showValue
+        self.setSelected(isSelected: self.filterModel?.isSelected ?? false)
+        self.vScroll.frame = self.filterModel?.filterLayout?.layoutContainerFrame ?? .zero
+        self.createItems(subItemType: ZFFilterBaseView.self)
+    }
+    
+    func createItems(subItemType:ZFFilterBaseView.Type){
+        let itemSize = self.filterModel?.filterLayout?.layoutItemSize ?? .zero
+        if let itemModels = self.filterModel?.filterItems{
+            var curX : CGFloat = 0
+            var curY : CGFloat = 0
+            for (index,itemModel) in itemModels.enumerated(){
+                let item = subItemType.init(frame: .init(x: curX, y: curY, width: itemSize.width, height: itemSize.height))
+                item.filterModel = itemModel
+                item.tag = index
+                curY += itemSize.height
+                self.vScroll.addSubview(item)
+                self.vScroll.contentSize = .init(width: curX + itemSize.width, height: curY + itemSize.height)
+                self.subItems.append(item)
+                item.vTitle.text = itemModel.showValue
+                self.closureOfItem?(item,itemModel)
+            }
+        }
+    }
+    
+    
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(self.vTitle)
+        self.addGestureRecognizer(self.vTapGesture)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.vTitle.frame = self.bounds
+        self.allContainerView?.addSubview(self.vScroll)
+    }
+}
+
+
+
+
+//MARK: -------
+
 class ViewController: UIViewController {
     var numberLines : Int{
         return 0
@@ -16,20 +212,37 @@ class ViewController: UIViewController {
     var tempFont : UIFont {
         return .systemFont(ofSize: 20)
     }
+    
+    func createTestData()->ZFFilterModel{
+        let filterModel = ZFFilterModel(key: "区域key", value: "区域")
+        filterModel.filterItems = Array(0...10).map{ item1 in
+            let tempModel = ZFFilterModel(key:"区域sub_key",value:"区域_\(item1)")
+            tempModel.filterItems = Array(0...10).map{ZFFilterModel(key: "区域sub_sub_key", value: "区域_\(item1)_\($0)")}
+            return tempModel
+        }
+        return filterModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        let title = [String].init(repeating: "aa", count: 10).joined(separator: "------")
-        let tempSize = title.getSizeOfNumberLines(width: tempWidth, font: self.tempFont, numberline: self.numberLines)
-        let label = UILabel()
-        label.tag = 100
-        label.backgroundColor = .lightGray
-        label.font = self.tempFont
-        label.text = title
-        label.numberOfLines = self.numberLines
-        label.frame = .init(x: 100, y: 200, width: tempSize.width, height: tempSize.height)
-        self.view.addSubview(label)
-//        
+        let testModel = self.createTestData()
+        
+        let filterView = ZFFilterBaseView()
+        filterView.allContainerView = self.view
+        filterView.backgroundColor = .lightGray
+        filterView.frame = .init(x: 100, y: 100, width: 100, height: 40)
+        testModel.filterLayout = .init(containerFrame: .init(x: 100, y: 140, width: 100, height: 300), itemSize: .init(width: 100, height: 30))
+        filterView.filterModel = testModel
+        self.view.addSubview(filterView)
+        filterView.closureOfItem = {item,model in
+            item.allContainerView = self.view
+            model.filterLayout = .init(containerFrame: .init(x: 200, y: 140, width: 100, height: 300), itemSize: .init(width: 100, height: 30))
+            item.setUp()
+        }
+        filterView.setUp()
+//
+        print(testModel)
         let btnPresent = UIButton.init(type: .custom)
         btnPresent.setTitleColor(.red, for: .normal)
         btnPresent.setTitle("push", for: .normal)
