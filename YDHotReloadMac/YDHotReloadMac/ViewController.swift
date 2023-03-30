@@ -26,9 +26,22 @@ import Cocoa
 */
 
 class ViewController: NSViewController {
-    var operations = [String]()
     
     var debugStrs = [String]()
+    
+    var firstConfirm = false
+    var secondConfirm = false{
+        didSet{
+            if self.secondConfirm {
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                    let res = self.runShell("/usr/local/bin/hot")
+                    print(res)
+                }
+                self.firstConfirm = false
+                self.secondConfirm = false
+            }
+        }
+    }
     
     let btnSize = CGSize.init(width: 100, height: 30)
     
@@ -62,16 +75,14 @@ class ViewController: NSViewController {
         NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
             self.debugStrs.append("keydown - \(event)")
             if let upChar = event.characters,upChar == "s"{
-                self.operations.append(upChar)
-                self.patternOperation()
+                self.patternOperation("s")
             }
 //            self.writeDebug()
         }
         NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged) { event in
             self.debugStrs.append("flagsChanged - \(event)")
             if event.modifierFlags.contains(.command){
-                self.operations.append("command")
-                self.patternOperation()
+                self.patternOperation("command")
             }
 //            self.writeDebug()
         }
@@ -79,43 +90,44 @@ class ViewController: NSViewController {
     func addLocal(){
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             if let upChar = event.characters,upChar == "s"{
-                self.operations.append(upChar)
-                self.patternOperation()
+                self.patternOperation("s")
             }
             return event
         }
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { event in
             if event.modifierFlags.contains(.command){
-                self.operations.append("command")
-                self.patternOperation()
+                self.patternOperation("command")
             }
             return event
         }
     }
     
-    func patternOperation(){
-        guard self.operations.count <= 2 else {
-            self.operations.removeAll()
+    func patternOperation(_ str:String? = nil){
+        print(str)
+        let validStrs = Set(["command","s"])
+        guard let upStr = str else {
             return
         }
-        if let firstChar = self.operations.first,firstChar == "command"{
-            if self.operations.count == 2{
-                if let lastChar = self.operations.last,lastChar == "s"{
-                    print("hot reload")
-                    DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                        let res = self.runShell("/usr/local/bin/hot")
-                        print(res)
-                    }
-                    self.operations.removeAll()
-                }else{
-                    self.operations.removeFirst()
-                }
-            }
-        }else{
-            self.operations.removeAll()
+        guard validStrs.contains(upStr) else{
+            return
         }
-
+        
+        if self.firstConfirm {
+            if upStr == "s" {
+                self.secondConfirm = true
+            }else{
+                self.firstConfirm = false
+            }
+        }else if upStr == "command"{
+            self.firstConfirm = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.firstConfirm = false
+            self.secondConfirm = false
+        }
     }
+    
     func runShell(_ command: String) -> Int32 {
         let task = Process()
         task.launchPath = "/bin/zsh"

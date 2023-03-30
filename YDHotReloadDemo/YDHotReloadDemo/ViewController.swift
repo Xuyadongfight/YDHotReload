@@ -16,7 +16,6 @@ protocol ZFFilterProtocol{
     func didSelect(isSelected:Bool)
 }
 
-
 class ZFFilterModel{
     var showValue : String
     
@@ -147,6 +146,9 @@ class ZFFilterBaseView : UIView{
         if isSelected {
             self.vTitle.textColor = .red
             self.vScroll.isHidden = false
+            if self.subItems.count == 0{
+                self.createItems(subItemType: ZFFilterBaseView.self)
+            }
         }else{
             self.vTitle.textColor = .black
             self.vScroll.isHidden = true
@@ -157,11 +159,16 @@ class ZFFilterBaseView : UIView{
         self.vTitle.text = self.filterModel?.showValue
         self.setSelected(isSelected: self.filterModel?.isSelected ?? false)
         self.vScroll.frame = self.filterModel?.filterLayout?.layoutContainerFrame ?? .zero
-        self.createItems(subItemType: ZFFilterBaseView.self)
+    }
+    
+    func clear(){
+        self.subItems.forEach{$0.removeFromSuperview()}
+        self.subItems.removeAll()
     }
     
     func createItems(subItemType:ZFFilterBaseView.Type){
         let itemSize = self.filterModel?.filterLayout?.layoutItemSize ?? .zero
+        
         if let itemModels = self.filterModel?.filterItems{
             var curX : CGFloat = 0
             var curY : CGFloat = 0
@@ -170,11 +177,14 @@ class ZFFilterBaseView : UIView{
                 item.filterModel = itemModel
                 item.tag = index
                 curY += itemSize.height
+                item.vTitle.text = itemModel.showValue
+                item.setUp()
+                
+                
                 self.vScroll.addSubview(item)
                 self.vScroll.contentSize = .init(width: curX + itemSize.width, height: curY + itemSize.height)
                 self.subItems.append(item)
-                item.vTitle.text = itemModel.showValue
-                self.closureOfItem?(item,itemModel)
+                
             }
         }
     }
@@ -217,7 +227,7 @@ class ViewController: UIViewController {
         let filterModel = ZFFilterModel(key: "区域key", value: "区域")
         filterModel.filterItems = Array(0...10).map{ item1 in
             let tempModel = ZFFilterModel(key:"区域sub_key",value:"区域_\(item1)")
-            tempModel.filterItems = Array(0...10).map{ZFFilterModel(key: "区域sub_sub_key", value: "区域_\(item1)_\($0)")}
+//            tempModel.filterItems = Array(0...10).map{ZFFilterModel(key: "区域sub_sub_key", value: "区域_\(item1)_\($0)")}
             return tempModel
         }
         return filterModel
@@ -228,19 +238,18 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .white
         let testModel = self.createTestData()
         
+        
         let filterView = ZFFilterBaseView()
         filterView.allContainerView = self.view
         filterView.backgroundColor = .lightGray
         filterView.frame = .init(x: 100, y: 100, width: 100, height: 40)
-        testModel.filterLayout = .init(containerFrame: .init(x: 100, y: 140, width: 100, height: 300), itemSize: .init(width: 100, height: 30))
+        
+        testModel.filterLayout = .init(containerFrame: .init(x: 0, y: 140, width: 100, height: 300), itemSize: .init(width: 100, height: 30))
         filterView.filterModel = testModel
         self.view.addSubview(filterView)
-        filterView.closureOfItem = {item,model in
-            item.allContainerView = self.view
-            model.filterLayout = .init(containerFrame: .init(x: 200, y: 140, width: 100, height: 300), itemSize: .init(width: 100, height: 30))
-            item.setUp()
-        }
+        
         filterView.setUp()
+        
 //
         print(testModel)
         let btnPresent = UIButton.init(type: .custom)
@@ -256,6 +265,14 @@ class ViewController: UIViewController {
         btnDismiss.addTarget(self, action: #selector(actionOfDismiss), for: .touchUpInside)
         btnDismiss.frame = .init(x: 300, y: 300, width: 80, height: 40)
         self.view.addSubview(btnDismiss)
+        
+        let btnTest = UIButton.init(type: .custom)
+        btnTest.setTitleColor(.red, for: .normal)
+        btnTest.setTitle("Test", for: .normal)
+        btnTest.addTarget(self, action: #selector(testQueue), for: .touchUpInside)
+        btnTest.frame = .init(x: 150, y: 400, width: 80, height: 40)
+        self.view.addSubview(btnTest)
+        
     }
     
     @objc func actionOfPush(){
@@ -271,6 +288,14 @@ class ViewController: UIViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }
+    
+    @objc func testQueue(){
+        let queue = DispatchQueue.global(qos: .background)
+        queue.async {
+            print(Thread.current,"1")
+        }
+    }
+    
 }
 
 class TestView:UIView{
