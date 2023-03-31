@@ -8,20 +8,23 @@
 #import "YDFileManager.h"
 #import <dirent.h>
 
-#define FILE_NAME_HOTRELOAD @"file_name_hotreload"
-#define FILE_NAME_PROJECT @"file_name_project"
-#define FILE_NAME_DYLIB @"file_name_dylib_base"
+
+#define FILE_NAME_CONFIG @"file_name_config"
+#define FILE_NAME_CHANGE @"file_name_change"
+#define FILE_NAME_DYLIB @"file_name_dylib_test"
 
 #define HOT_PATH_CLASS @"class"
 #define HOT_PATH_SHELL @"shell"
 #define HOT_PATH_LIBRARY @"library"
 #define HOT_PATH_OTHER @"other"
 
-#define FILE_NAME_CONFIG @"file_name_config"
+
 
 @interface YDFileManager()
 @property(nonatomic,strong)NSString *path_base_hotreload;
 @property(nonatomic,strong)NSString *path_project;
+@property(nonatomic,strong)NSString *path_sdk;
+@property(nonatomic,strong)NSString *target_name;
 @property(nonatomic,strong)NSString *dylib_base_name;
 
 
@@ -64,18 +67,17 @@
 }
 
 -(void)checkFiles{
-    NSString *project_path = [self loadBundleFile:FILE_NAME_PROJECT];
-    if (project_path == nil || [project_path isEqual: @""]) {
-        NSLog(@"ERROR:工程路径%@ 无内容 请重试",project_path);
-        return;
-    }
-    self.path_project = project_path;
-    self.dylib_base_name = @"dylib_test";
-    
     NSDictionary *dicConfig = [NSJSONSerialization JSONObjectWithData:[self loadBundleData:FILE_NAME_CONFIG] options:NSJSONReadingMutableLeaves error:nil];
-    NSArray<NSString*> *reload_files = [[dicConfig allValues] firstObject];
+    
+    self.path_project = dicConfig[@"project_path"];
+    self.path_sdk = dicConfig[@"sdk_path"];
+    self.target_name = @"x86_64-apple-ios12.0-simulator";
+    self.dylib_base_name = FILE_NAME_DYLIB;
+    
+    NSDictionary *dicChangeFiles = [NSJSONSerialization JSONObjectWithData:[self loadBundleData:FILE_NAME_CHANGE] options:NSJSONReadingMutableLeaves error:nil];
+    NSArray<NSString*> *reload_files = dicChangeFiles[@"files"];
     if (reload_files == nil || reload_files.count == 0) {
-        NSLog(@"ERROR:需更新文件为空 %@",FILE_NAME_CONFIG);
+        NSLog(@"ERROR:需更新文件为空 %@",FILE_NAME_CHANGE);
         return;
     }
     
@@ -214,7 +216,8 @@ int ReadDir(const char* pathname,void *array,void*dic){
 
 -(void)createShells{
     NSString *dylib_name = [self getdylibName];
-    NSMutableString *shellCompile = [NSMutableString stringWithFormat:@"swiftc -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -target x86_64-apple-ios12.0-simulator -emit-library -o %@/%@ ",self.path_library,dylib_name];
+//    NSMutableString *shellCompile = [NSMutableString stringWithFormat:@"swiftc -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -target x86_64-apple-ios12.0-simulator -emit-library -o %@/%@ ",self.path_library,dylib_name];
+    NSMutableString *shellCompile = [NSMutableString stringWithFormat:@"swiftc -sdk %@ -target %@ -emit-library -o %@/%@ ",self.path_sdk,self.target_name,self.path_library,dylib_name];
     [self.allHotFiles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [shellCompile appendFormat:@"%@ ",self.allProjectDics[obj]];
     }];

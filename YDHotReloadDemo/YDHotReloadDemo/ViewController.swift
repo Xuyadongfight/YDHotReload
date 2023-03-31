@@ -268,9 +268,10 @@ class ViewController: UIViewController {
         
         let btnTest = UIButton.init(type: .custom)
         btnTest.setTitleColor(.red, for: .normal)
-        btnTest.setTitle("Test", for: .normal)
+        btnTest.setTitle("Test Click", for: .normal)
         btnTest.addTarget(self, action: #selector(testQueue), for: .touchUpInside)
-        btnTest.frame = .init(x: 150, y: 400, width: 80, height: 40)
+        btnTest.frame = .init(x: 150, y: 400, width: 0, height: 0)
+        btnTest.sizeToFit()
         self.view.addSubview(btnTest)
         
     }
@@ -290,8 +291,11 @@ class ViewController: UIViewController {
     }
     
     @objc func testQueue(){
-        let queue = DispatchQueue.global(qos: .background)
-        queue.async {
+        let queue_main = DispatchQueue.main
+        let queue_serial = DispatchQueue.init(label: "serial_1")
+        let queue_concurrent = DispatchQueue.global(qos: .background)
+        
+        queue_main.sync {
             print(Thread.current,"1")
         }
     }
