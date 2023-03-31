@@ -45,10 +45,6 @@
 @end
 
 @implementation YDFileManager
-/*
- 1.在桌面创建需要的文件夹ydhotreload
- 2.程序中需要能够获取桌面动态文件夹的路径（通过脚本修改工程中的资源文件 来通信）突破沙盒限制
- */
 
 +(instancetype)shared{
     static dispatch_once_t once;
