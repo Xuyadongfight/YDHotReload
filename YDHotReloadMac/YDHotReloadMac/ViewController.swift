@@ -58,9 +58,6 @@ class ViewController: NSViewController {
         }else{
             self.btnAccess.isHidden = false
             NSWorkspace.shared.open(URL(string:"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.actionOfAccess()
-            }
         }
     }
     
